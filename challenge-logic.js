@@ -2,8 +2,8 @@ let input = require("fs").readFileSync("stdin", "utf8");
 let values = input.split("\n");
 let length = parseInt(values.shift());
 
-let drawingHourglass = "";
-let reverse = false;
+let drawingHourglassStarted = "";
+let drawingHourglassCompleted = "";
 
 let lengthMinusOne = length - 1;
 let lengthMinusTwo = length - 2;
@@ -29,36 +29,43 @@ function drawing() {
         for (let column = 0; column < length; column++) {
 
             if (row == 0 || row == lengthMinusOne || column == 0 || column == lengthMinusOne || column == row || (column + row) == lengthMinusOne) {
-                drawingHourglass += `#`
+                drawingHourglassStarted += `#`
+                drawingHourglassCompleted += `#`
 
             } else {
 
-                if ((row <= (lengthMinusOne / 2) && (column > row && (column + row) < lengthMinusOne)) && !reverse) {
-                    drawingHourglass += `#`;
-                } else if ((row >= (lengthMinusOne / 2) && (column < row && (column + row) > lengthMinusTwo)) && reverse) {
-                    drawingHourglass += `#`;
-                } else {
-                    drawingHourglass += ` `;
-                }
+                drawingHourglassStarted += drawingStarted(row, column, lengthMinusOne);
+                drawingHourglassCompleted += drawingCompleted(row, column, lengthMinusOne, lengthMinusTwo);
+
             }
         }
 
-        drawingHourglass += "\n";
-
-        if (row == lengthMinusOne && !reverse) {
-
-            // show drawingHourglass started
-            console.log(drawingHourglass);
-            console.log(`Tamanho: ${length} \n`);
-
-            row = -1;
-            reverse = !reverse;
-            drawingHourglass = "";
-        }
+        drawingHourglassStarted += "\n";
+        drawingHourglassCompleted += "\n";
 
     }
 
-    // show drawingHourglass completed
-    console.log(drawingHourglass);
+    // show drawingHourglass started
+    console.log(drawingHourglassStarted);
     console.log(`Tamanho: ${length} \n`);
+
+    // show drawingHourglass completed
+    console.log(drawingHourglassCompleted);
+    console.log(`Tamanho: ${length} \n`);
+}
+
+function drawingStarted(row, column, lengthMinusOne) {
+    if (row <= (lengthMinusOne / 2) && (column > row && (column + row) < lengthMinusOne)) {
+        return `#`;
+    } else {
+        return ` `;
+    }
+}
+
+function drawingCompleted(row, column, lengthMinusOne, lengthMinusTwo) {
+    if (row >= (lengthMinusOne / 2) && (column < row && (column + row) > lengthMinusTwo)) {
+        return `#`;
+    } else {
+        return ` `;
+    }
 }
