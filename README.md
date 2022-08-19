@@ -49,6 +49,10 @@ Sempre matendo a preocupação que alguém vai fazer um review do código. Desen
 - A ampulheta preenchida.
 - Validação do valor de input do usuário.
 - Os caractéres dos densenhos podem serem dinâmicos alterando apenas duas varíaveis.
+```js
+let charWithDrawing = `#`;
+let charWithoutDrawing = ` `;
+```
 
 > Melhorias não realizadas
 - A princípio eu queria deixar a areia caindo ultilizando o método setTimeOut, porém não ficou do jeito que eu esperava então decidir não adicionar, fui na lógica de que o menos e mais e o feito é melhor que não feito.
