@@ -8,6 +8,9 @@ let drawingHourglassCompleted = "";
 let lengthMinusOne = length - 1;
 let lengthMinusTwo = length - 2;
 
+let charWithDrawing = `#`;
+let charWithoutDrawing = ` `;
+
 if (validated(length)) {
     drawing();
 }
@@ -29,8 +32,8 @@ function drawing() {
         for (let column = 0; column < length; column++) {
 
             if (row == 0 || row == lengthMinusOne || column == 0 || column == lengthMinusOne || column == row || (column + row) == lengthMinusOne) {
-                drawingHourglassStarted += `#`
-                drawingHourglassCompleted += `#`
+                drawingHourglassStarted += charWithDrawing
+                drawingHourglassCompleted += charWithDrawing
 
             } else {
 
@@ -56,16 +59,16 @@ function drawing() {
 
 function drawingStarted(row, column, lengthMinusOne) {
     if (row <= (lengthMinusOne / 2) && (column > row && (column + row) < lengthMinusOne)) {
-        return `#`;
+        return charWithDrawing;
     } else {
-        return ` `;
+        return charWithoutDrawing;
     }
 }
 
 function drawingCompleted(row, column, lengthMinusOne, lengthMinusTwo) {
     if (row >= (lengthMinusOne / 2) && (column < row && (column + row) > lengthMinusTwo)) {
-        return `#`;
+        return charWithDrawing;
     } else {
-        return ` `;
+        return charWithoutDrawing;
     }
 }
